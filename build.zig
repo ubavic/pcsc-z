@@ -137,7 +137,7 @@ fn addExamples(
 
 fn addFmt(b: *std.Build, steps: *const Steps) void {
     const zig_fmt = b.addFmt(.{
-        .check = isCi(),
+        .check = isCi(b),
         .paths = &.{
             b.path("build.zig"),
             b.path("e2e"),
@@ -192,8 +192,9 @@ fn linkPcsc(
     }
 }
 
-fn isCi() bool {
-    return std.process.hasNonEmptyEnvVarConstant("CI");
+fn isCi(b: *std.Build) bool {
+    const value = b.graph.environ_map.get("CI") orelse "";
+    return value.len != 0;
 }
 
 fn modBase(
