@@ -139,10 +139,10 @@ fn addFmt(b: *std.Build, steps: *const Steps) void {
     const zig_fmt = b.addFmt(.{
         .check = isCi(),
         .paths = &.{
-            "build.zig",
-            "e2e",
-            "examples",
-            "src",
+            b.path("build.zig"),
+            b.path("e2e"),
+            b.path("examples"),
+            b.path("src"),
         },
     });
 
