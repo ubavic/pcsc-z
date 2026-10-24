@@ -147,17 +147,20 @@ pub const Status = packed struct(u32) {
     ///
     /// https://pcsclite.apdu.fr/api/group__API.html#differences
     const Win = as_enum: {
-        const flags = @typeInfo(Status).@"struct".fields;
+        const flags_names = @typeInfo(Status).@"struct".field_names;
+        const flag_types = @typeInfo(Status).@"struct".field_types;
 
-        var names: [flags.len][]const u8 = undefined;
-        var values: [flags.len]Uword = undefined;
+        std.debug.assert(flag_types.len == flags_names.len);
+
+        var names: [flags_names.len][]const u8 = undefined;
+        var values: [flag_types.len]Uword = undefined;
 
         var len = 0;
-        for (flags) |flag| {
-            if (flag.type != bool) continue;
+        for (0..flags_names.len) |i| {
+            if (flag_types[i] != bool) continue;
 
-            names[len] = flag.name;
-            values[len] = len;
+            names[len] = flags_names[i];
+            values[len] = @intCast(len);
 
             len += 1;
         }
