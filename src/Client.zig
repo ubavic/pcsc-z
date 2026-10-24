@@ -76,7 +76,7 @@ const Client = @This();
 /// Server-assigned handle for the client connection context.
 handle: Handle,
 
-const Handle = packed struct { ref: HandleType };
+const Handle = extern struct { ref: HandleType };
 
 /// Scope for a PCSC connection.
 pub const Scope = enum(u8) {

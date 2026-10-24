@@ -24,7 +24,7 @@ handle: Handle,
 /// Currently active protocol.
 protocol: Protocol,
 
-pub const Handle = packed struct { ref: HandleType };
+pub const Handle = extern struct { ref: HandleType };
 
 /// Card disposition action to perform when disconnecting or reconnecting.
 pub const Disposition = enum(u8) {
