@@ -94,8 +94,8 @@ pub const Scope = enum(u8) {
     const Sys = packed struct(Uword) {
         scope: Scope,
 
-        /// Potential padding.
-        _: std.meta.Int(.unsigned, @bitSizeOf(Uword) - @bitSizeOf(Scope)) = 0,
+        // Potential padding.
+        _: @Int(.unsigned, @bitSizeOf(Uword) - @bitSizeOf(Scope)) = 0,
     };
 };
 

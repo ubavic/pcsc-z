@@ -48,7 +48,7 @@ pub const Disposition = enum(u8) {
         disposition: Disposition,
 
         /// Potential padding.
-        _: std.meta.Int(
+        _: @Int(
             .unsigned,
             @bitSizeOf(Uword) - @bitSizeOf(Disposition),
         ) = 0,
@@ -87,7 +87,7 @@ pub const Mode = enum(u8) {
         mode: Mode,
 
         /// Potential padding.
-        _: std.meta.Int(.unsigned, @bitSizeOf(Uword) - @bitSizeOf(Mode)) = 0,
+        _: @Int(.unsigned, @bitSizeOf(Uword) - @bitSizeOf(Mode)) = 0,
     };
 };
 
@@ -137,7 +137,7 @@ pub const Status = packed struct(u32) {
         flags: Status,
 
         /// Potential padding.
-        _: std.meta.Int(.unsigned, @bitSizeOf(Uword) -| @bitSizeOf(Status)) = 0,
+        _: @Int(.unsigned, @bitSizeOf(Uword) -| @bitSizeOf(Status)) = 0,
     };
 
     /// Windows-specific wrapper type for `Card.Status`.
