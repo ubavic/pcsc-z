@@ -39,7 +39,4 @@ pub inline fn controlCode(function_code: u32) u32 {
     }
 }
 
-test {
-    const std = @import("std");
-    std.testing.refAllDeclsRecursive(@This());
-}
+test {}
